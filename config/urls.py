@@ -22,7 +22,8 @@ from celebs.views import CelebsAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/celebslist', CelebsAPIView.as_view())
+    path('api/v1/celebslist', CelebsAPIView.as_view()),
+    path('api/v1/celebslist/<int:pk>/', CelebsAPIView.as_view()),
 ]
 
 if settings.DEBUG:

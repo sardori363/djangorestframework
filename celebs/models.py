@@ -1,11 +1,5 @@
 from django.db import models
 
-class Category(models.Model):
-    name = models.CharField(max_length=100, db_index=True, verbose_name="Категория")
-
-    def __str__(self):
-        return self.name
-
 class Celebs(models.Model):
     title = models.CharField(max_length=255, verbose_name="Заголовок")
     content = models.TextField(blank=True, verbose_name="Текст статьи")
@@ -17,3 +11,8 @@ class Celebs(models.Model):
     def __str__(self):
         return self.title
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, db_index=True, verbose_name="Категория")
+
+    def __str__(self):
+        return self.name
