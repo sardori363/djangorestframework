@@ -18,12 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from celebs.views import CelebsAPIView
+from celebs.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/celebslist', CelebsAPIView.as_view()),
-    path('api/v1/celebslist/<int:pk>/', CelebsAPIView.as_view()),
+    path('api/v1/celebslist', CelebsAPIList.as_view()),
+    path('api/v1/celebslist/<int:pk>/', CelebsAPIUpdate.as_view()),
+    path('api/v1/celebsdetail/<int:pk>/', CelebsDetailView.as_view()),
 ]
 
 if settings.DEBUG:
