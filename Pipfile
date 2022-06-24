@@ -8,6 +8,8 @@ django = "~=3.1.0"
 pillow = "==9.1.1"
 psycopg2-binary = "*"
 djangorestframework = "*"
+djoser = "==2.0.1"
+six = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
-"""config URL Configuration
+"""drfsite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -13,20 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 from celebs.views import *
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/celebs/', CelebsAPIList.as_view()),
-    path('api/v1/celebs/<int:pk>', CelebsAPIUpdate.as_view()),
-    path('api/v1/celebsdelete/<int:pk>', CelebsAPIDestroy.as_view()),
+    path('api/v1/drf-auth/', include('rest_framework.urls')),
+    path('api/v1/women/', CelebsAPIList.as_view()),
+    path('api/v1/women/<int:pk>/', CelebsAPIUpdate.as_view()),
+    path('api/v1/womendelete/<int:pk>/', CelebsAPIDestroy.as_view()),
+    path('api/v1/auth/', include('djoser.urls')),  # new
+    re_path(r'^auth/', include('djoser.urls.authtoken')),  # new
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
