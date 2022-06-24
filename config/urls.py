@@ -19,16 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from celebs.views import *
-from rest_framework import routers
 
-router = routers.SimpleRouter()
-router.register(r'celebs', CelebsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
-    # path('api/v1/celebslist', CelebsViewSet.as_view({'get': 'list'})),
-    # path('api/v1/celebslist/<int:pk>/', CelebsViewSet.as_view({'put': 'update'})),
+    path('api/v1/celebs/', CelebsAPIList.as_view()),
+    path('api/v1/celebs/<int:pk>', CelebsAPIUpdate.as_view()),
+    path('api/v1/celebsdelete/<int:pk>', CelebsAPIDestroy.as_view()),
 ]
 
 if settings.DEBUG:
